@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { NASA_HEADER, NASA_TOKEN } from '../secrets';
+// import { NASA_HEADER, NASA_TOKEN } from '../secrets';
 import LoadingPage from './LoadingPage';
 
 import LikeButton from './LikeButton';
@@ -11,7 +11,7 @@ const Content = () => {
 
   useEffect(() => {
     setLoading(true);
-    fetch(NASA_HEADER + NASA_TOKEN + '&count=50')
+    fetch(process.env.NASA_HEADER + process.env.NASA_TOKEN + '&count=50')
       .then((res) => res.json())
       .then((data) => {
         setAstronomiesState(data);
