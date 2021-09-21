@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { NASA_HEADER, NASA_TOKEN } from '../secrets';
 
+import LikeButton from './LikeButton';
+
 const Content = () => {
   const [astronomiesState, setAstronomiesState] = useState([]);
-  const [like, setLike] = useState(false);
+  // const [like, setLike] = useState(false);
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
@@ -38,9 +40,10 @@ const Content = () => {
           <h3 id="image title">{astronomy.title}</h3>
           <img src={astronomy.url} alt={astronomy.title} />
           <div id="description">{astronomy.explanation}</div>
-          <button onClick={() => setLike(!like)}>
+          {/* <button onClick={() => setLike(!like)}>
             {like ? 'Unlike' : 'Like'}
-          </button>
+          </button> */}
+          <LikeButton />
         </div>
       ))}
     </div>
