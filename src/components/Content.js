@@ -1,16 +1,34 @@
-import React, { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
-import { getAstronomies } from '../store/astronomies';
+import React, { useState, useEffect } from 'react';
+import { NASA_HEADER, NASA_TOKEN } from '../secrets';
 
 const Content = () => {
-  const dispatch = useDispatch();
+  const [astronomiesState, setAstronomiesState] = useState([]);
+  const [like, setLike] = useState(false);
 
   useEffect(() => {
-    dispatch(getAstronomies);
-  });
+    fetch(NASA_HEADER + NASA_TOKEN + '&count=5')
+      .then((res) => res.json())
+      .then((data) => {
+        setAstronomiesState(data);
+      });
+  }, []);
+
   return (
     <div class="astronomies">
-      <body> hello world </body>
+      {console.log(astronomiesState)}
+
+      <ul>
+        {astronomiesState.map((astronomy, idx) => (
+          <li key={idx}>
+            <h3>{astronomy.title}</h3>
+            <img src={astronomy.url} alt={astronomy.title} />
+            <div>{astronomy.explanation}</div>
+            <button onClick={() => setLike(!like)}>
+              {like ? 'Unlike' : 'Like'}
+            </button>
+          </li>
+        ))}
+      </ul>
     </div>
   );
 };

@@ -13,7 +13,7 @@ export const gotAstronomies = (astronomies) => {
 export const getAstronomies = () => {
   return async (dispatch) => {
     const { data: astronomies } = await axios.get(
-      `${NASA_HEADER}${NASA_TOKEN}&count=5`
+      NASA_HEADER + NASA_TOKEN + '&count=5'
     );
     dispatch(gotAstronomies(astronomies));
   };
