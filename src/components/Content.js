@@ -25,9 +25,9 @@ const Content = () => {
 
   if (loading) {
     return (
-      <div>
+      <body>
         Rendering Spaces, Planets, and other out-of-worldly resources...
-      </div>
+      </body>
     );
   }
 
@@ -36,15 +36,13 @@ const Content = () => {
       {console.log(astronomiesState)}
 
       {astronomiesState.map((astronomy, idx) => (
-        <div id="singleAstronomy" key={idx}>
+        <body id="singleAstronomy" key={idx}>
           <h3 id="image title">{astronomy.title}</h3>
-          <img src={astronomy.url} alt={astronomy.title} />
-          <div id="description">{astronomy.explanation}</div>
-          {/* <button onClick={() => setLike(!like)}>
-            {like ? 'Unlike' : 'Like'}
-          </button> */}
+          <img id="image" src={astronomy.url} alt={astronomy.title} />
+          <p id="date"> Image captured on {astronomy.date} </p>
+          <p id="description">{astronomy.explanation}</p>
           <LikeButton />
-        </div>
+        </body>
       ))}
     </div>
   );
