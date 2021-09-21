@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { NASA_HEADER, NASA_TOKEN } from '../secrets';
+import LoadingPage from './LoadingPage';
 
 import LikeButton from './LikeButton';
 
@@ -24,11 +25,7 @@ const Content = () => {
   }, []);
 
   if (loading) {
-    return (
-      <body>
-        Rendering Spaces, Planets, and other out-of-worldly resources...
-      </body>
-    );
+    return <LoadingPage />;
   }
 
   return (
@@ -36,12 +33,14 @@ const Content = () => {
       {console.log(astronomiesState)}
 
       {astronomiesState.map((astronomy, idx) => (
-        <body id="singleAstronomy" key={idx}>
-          <h3 id="image title">{astronomy.title}</h3>
+        <body class="singleAstronomy" key={idx}>
+          <h3 id="imageTitle">{astronomy.title}</h3>
           <img id="image" src={astronomy.url} alt={astronomy.title} />
-          <p id="date"> Image captured on {astronomy.date} </p>
+          <p>
+            <LikeButton id="likeButton" />
+            <span id="date"> Image captured on {astronomy.date} </span>
+          </p>
           <p id="description">{astronomy.explanation}</p>
-          <LikeButton />
         </body>
       ))}
     </div>
