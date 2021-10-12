@@ -13,3 +13,4 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 - Node
 - React
 - Material-UI
+- NASA's Astronomy Picture of the Day API
